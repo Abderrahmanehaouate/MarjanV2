@@ -1,6 +1,6 @@
 package com.youcode.marjanv2.Controllers;
 
-import com.youcode.marjanv2.Models.User;
+import com.youcode.marjanv2.Models.Entity.User;
 import com.youcode.marjanv2.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,7 +21,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/")
+    @GetMapping
     public List<User> getAllUsers() {
         return userService.getAllUsers();
     }

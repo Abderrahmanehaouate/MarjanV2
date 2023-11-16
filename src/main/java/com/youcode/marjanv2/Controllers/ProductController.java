@@ -1,7 +1,6 @@
 package com.youcode.marjanv2.Controllers;
 
-import com.youcode.marjanv2.Models.Product;
-import com.youcode.marjanv2.Models.User;
+import com.youcode.marjanv2.Models.Entity.Product;
 import com.youcode.marjanv2.Services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
