@@ -1,4 +1,4 @@
-package com.youcode.marjanv2.Services.Exceptions;
+package com.youcode.marjanv2.Exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

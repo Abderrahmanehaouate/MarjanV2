@@ -1,8 +1,8 @@
 package com.youcode.marjanv2.Services;
 
-import com.youcode.marjanv2.Models.Admin;
+import com.youcode.marjanv2.Models.Entity.Admin;
 import com.youcode.marjanv2.Repositories.AdminRepository;
-import com.youcode.marjanv2.Services.Exceptions.CustomException;
+import com.youcode.marjanv2.Exceptions.CustomException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

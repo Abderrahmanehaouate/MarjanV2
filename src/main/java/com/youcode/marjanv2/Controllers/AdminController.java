@@ -1,6 +1,6 @@
 package com.youcode.marjanv2.Controllers;
 
-import com.youcode.marjanv2.Models.Admin;
+import com.youcode.marjanv2.Models.Entity.Admin;
 import com.youcode.marjanv2.Services.AdminService;
 import com.youcode.marjanv2.Services.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;

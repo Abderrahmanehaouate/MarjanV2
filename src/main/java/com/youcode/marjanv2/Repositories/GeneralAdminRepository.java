@@ -1,6 +1,6 @@
 package com.youcode.marjanv2.Repositories;
 
-import com.youcode.marjanv2.Models.GeneralAdmin;
+import com.youcode.marjanv2.Models.Entity.GeneralAdmin;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

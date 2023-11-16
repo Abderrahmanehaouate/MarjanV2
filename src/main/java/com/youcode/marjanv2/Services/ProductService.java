@@ -1,6 +1,6 @@
 package com.youcode.marjanv2.Services;
 
-import com.youcode.marjanv2.Models.Product;
+import com.youcode.marjanv2.Models.Entity.Product;
 import com.youcode.marjanv2.Repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
