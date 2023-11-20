@@ -27,7 +27,9 @@ public class PromotionDto {
                 .name(promotion.getName())
                 .description(promotion.getDescription())
                 .discountPercentage(promotion.getDiscountPercentage())
-                .categoryId(promotion.getCategory() != null ? promotion.getCategory().getId() : null)
+                .categoryId(
+                        promotion.getCategory() != null ? promotion.getCategory().getId() : null
+                )
                 .productIds(getProductIds(promotion.getProducts()))
                 .build();
     }

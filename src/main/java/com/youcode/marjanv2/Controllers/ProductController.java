@@ -1,5 +1,6 @@
 package com.youcode.marjanv2.Controllers;
 
+import com.youcode.marjanv2.Models.Dto.ProductDto;
 import com.youcode.marjanv2.Models.Entity.Product;
 import com.youcode.marjanv2.Services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +23,17 @@ public class ProductController {
     }
 
     @GetMapping
-    public List<Product> getAllProducts() {
+    public List<ProductDto> getAllProducts() {
         return productService.getAllProducts();
+    }
+    @GetMapping("/{id}")
+    public ProductDto getProductById(@PathVariable Long id) {
+        return productService.getProductById(id);
     }
 
     @PostMapping("/create")
-    public ResponseEntity<String> createProduct(@RequestBody Product product) {
-        productService.createProduct(product);
+    public ResponseEntity<String> createProduct(@RequestBody ProductDto productDto) {
+        productService.createProduct(productDto);
         return new ResponseEntity<>("Product created successfully", HttpStatus.OK);
     }
 
@@ -42,10 +47,4 @@ public class ProductController {
         productService.updateProduct(product);
         return new ResponseEntity<>("Product updated successfully", HttpStatus.OK);
     }
-
-    @GetMapping("/{id}")
-    public Product getProductById(@PathVariable Long id) {
-        return productService.getProductById(id);
-    }
-
 }

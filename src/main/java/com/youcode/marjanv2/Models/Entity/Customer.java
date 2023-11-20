@@ -16,7 +16,6 @@ import lombok.Setter;
 public class Customer extends BaseUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "customer_id")
     private Long id;
     private String phone;
     private String address;
