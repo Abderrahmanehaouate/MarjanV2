@@ -1,5 +1,6 @@
 package com.youcode.marjanv2.Models.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,7 +13,6 @@ import lombok.*;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "product_id")
     private Long id;
     private String name;
     private String description;
@@ -22,10 +22,12 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name = "category_id")
+    @JsonIgnore
     private Category category;
 
     @ManyToOne
     @JoinColumn(name = "promotion_id")
+    @JsonIgnore
     private Promotion promotion;
 
 }

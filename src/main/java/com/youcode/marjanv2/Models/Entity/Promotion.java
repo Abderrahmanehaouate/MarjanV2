@@ -15,7 +15,6 @@ import java.util.List;
 public class Promotion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "promotion_id")
     private Long id;
     private String name;
     private String description;

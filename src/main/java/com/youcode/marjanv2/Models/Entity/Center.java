@@ -11,7 +11,6 @@ import lombok.Setter;
 public class Center {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "center_id")
     private Long id;
     private String name;
     private String city;

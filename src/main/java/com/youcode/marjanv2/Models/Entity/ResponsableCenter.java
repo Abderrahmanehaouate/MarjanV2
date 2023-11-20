@@ -11,7 +11,6 @@ import lombok.Setter;
 public class ResponsableCenter extends BaseUser{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "responsable_center_id")
     private Long id;
 
 
