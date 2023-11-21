@@ -28,9 +28,12 @@ public class CategoryService {
                 .collect(Collectors.toList());
     }
 
-    public Optional<Category> getCategoryById(Long id) {
-        return categoryRepository.findById(id);
+    public Optional<CategoryDto> getCategoryById(Long id) {
+        Optional<Category> categoryOptional = categoryRepository.findById(id);
+
+        return categoryOptional.map(category -> CategoryDto.fromEntity(category));
     }
+
 
     public void saveAdmin(CategoryDto categoryDto) {
         Category category = modelMapper.map(categoryDto, Category.class);

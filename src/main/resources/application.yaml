@@ -10,6 +10,9 @@ spring:
       ddl-auto: update
     show-sql: true
     defer-datasource-initialization: true
+  h2:
+    console:
+      enabled: true
   mail:
     host: smtp.gmail.com
     port: 587

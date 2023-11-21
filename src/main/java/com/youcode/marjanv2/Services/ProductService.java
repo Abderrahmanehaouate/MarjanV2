@@ -15,11 +15,11 @@ import java.util.stream.Collectors;
 public class ProductService {
     private final ProductRepository productRepository;
     private final ModelMapper modelMapper;
-
     @Autowired
     public ProductService(ProductRepository productRepository, ModelMapper modelMapper) {
         this.productRepository = productRepository;
         this.modelMapper = modelMapper;
+
     }
 
     public List<ProductDto> getAllProducts() {
@@ -38,7 +38,8 @@ public class ProductService {
         productRepository.deleteById(id);
     }
 
-    public void updateProduct(Product product) {
+    public void updateProduct(ProductDto productDto) {
+        Product product = modelMapper.map(productDto, Product.class);
         productRepository.save(product);
     }
 

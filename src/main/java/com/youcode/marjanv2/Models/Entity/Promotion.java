@@ -3,6 +3,7 @@ package com.youcode.marjanv2.Models.Entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -19,6 +20,10 @@ public class Promotion {
     private String name;
     private String description;
     private Double discountPercentage;
+    private Double loyaltyPoints;
+    private Date startTime;
+    private Date endTime;
+    private String status;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
