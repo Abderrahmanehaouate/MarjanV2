@@ -22,7 +22,7 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping("/all")
+    @GetMapping
     public List<ProductDto> getAllProducts() {
         return productService.getAllProducts();
     }

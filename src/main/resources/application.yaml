@@ -4,7 +4,12 @@ spring:
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
-
+  liquibase:
+    change-log: classpath:db.changelog/changelog-master.xml
+    user: postgres
+    url: jdbc:postgresql://localhost:5432/marjan
+    password: postgres
+    enabled: true
   jpa:
     hibernate:
       ddl-auto: update

@@ -31,7 +31,6 @@ public class Promotion {
     @JsonIgnore
     private Category category;
 
-
     @OneToMany(mappedBy = "promotion", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Product> products;

@@ -3,10 +3,10 @@
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
 
     <changeSet id="1" author="abderrahman">
-        <createTable tableName="tbl_categories">
+        <createTable tableName="categories">
             <column name="category_id" type="BIGINT">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -18,7 +18,7 @@
     </changeSet>
 
     <changeSet id="2" author="abderrahman">
-        <createTable tableName="tbl_promotions">
+        <createTable tableName="promotions">
             <column name="id" type="BIGINT">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -45,10 +45,10 @@
             </column>
         </createTable>
         <addForeignKeyConstraint
-                baseTableName="tbl_promotions"
+                baseTableName="promotions"
                 baseColumnNames="category_id"
                 constraintName="fk_promotion_category"
-                referencedTableName="tbl_categories"
+                referencedTableName="categories"
                 referencedColumnNames="category_id"
                 onDelete="CASCADE"
                 onUpdate="CASCADE"/>
@@ -56,7 +56,7 @@
 
     <!-- Create Product Table -->
     <changeSet id="3" author="abderrahman">
-        <createTable tableName="tbl_products">
+        <createTable tableName="products">
             <column name="id" type="BIGINT">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -82,18 +82,18 @@
             </column>
         </createTable>
         <addForeignKeyConstraint
-                baseTableName="tbl_products"
+                baseTableName="products"
                 baseColumnNames="category_id"
                 constraintName="fk_product_category"
-                referencedTableName="tbl_categories"
+                referencedTableName="categories"
                 referencedColumnNames="category_id"
                 onDelete="CASCADE"
                 onUpdate="CASCADE"/>
         <addForeignKeyConstraint
-                baseTableName="tbl_products"
+                baseTableName="products"
                 baseColumnNames="promotion_id"
                 constraintName="fk_product_promotion"
-                referencedTableName="tbl_promotions"
+                referencedTableName="promotions"
                 referencedColumnNames="id"
                 onDelete="CASCADE"
                 onUpdate="CASCADE"/>
