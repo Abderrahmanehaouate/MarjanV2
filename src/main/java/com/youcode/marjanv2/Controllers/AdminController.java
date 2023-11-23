@@ -17,13 +17,14 @@ import java.util.List;
 public class AdminController {
 
     private final AdminService adminService;
+    private final EmailService emailService;
 
     @Autowired
-    public AdminController(AdminService adminService) {
+    public AdminController(AdminService adminService, EmailService emailService) {
         this.adminService = adminService;
+        this.emailService = emailService;
     }
-    @Autowired
-    private EmailService emailService;
+
     @GetMapping
     public List<Admin> getAllAdmins() {
         return adminService.getAllAdmins();

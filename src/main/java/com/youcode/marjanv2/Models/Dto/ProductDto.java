@@ -1,7 +1,7 @@
 package com.youcode.marjanv2.Models.Dto;
 
-import com.youcode.marjanv2.Models.Entity.Category;
-import com.youcode.marjanv2.Models.Entity.Promotion;
+import com.youcode.marjanv2.Models.Entity.Product;
+
 import lombok.*;
 
 @Getter
@@ -14,8 +14,23 @@ public class ProductDto {
     private String name;
     private String description;
     private Double price;
+    private Long quantity;
     private String imageUrl;
     private String productStatus;
-    private Category category;
-    private Promotion promotion;
+    private CategoryDto category;
+    private PromotionDto promotion;
+
+    public static ProductDto fromEntity(Product product) {
+        return ProductDto.builder()
+                .id(product.getId())
+                .name(product.getName())
+                .description(product.getDescription())
+                .price(product.getPrice())
+                .imageUrl(product.getImageUrl())
+                .quantity(product.getQuantity())
+                .productStatus(product.getProductStatus())
+                .category(CategoryDto.fromEntity(product.getCategory()))
+                .promotion(PromotionDto.fromEntity(product.getPromotion()))
+                .build();
+    }
 }

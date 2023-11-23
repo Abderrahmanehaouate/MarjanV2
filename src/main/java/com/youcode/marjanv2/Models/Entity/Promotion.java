@@ -1,5 +1,6 @@
 package com.youcode.marjanv2.Models.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -27,9 +28,11 @@ public class Promotion {
 
     @ManyToOne
     @JoinColumn(name = "category_id")
+    @JsonIgnore
     private Category category;
 
 
     @OneToMany(mappedBy = "promotion", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Product> products;
 }

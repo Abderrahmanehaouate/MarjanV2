@@ -31,8 +31,8 @@ public class PromotionController {
     }
 
     @PostMapping("/create")
-    public Promotion createPromotion(@RequestParam Long categoryId,@RequestBody PromotionDto promotionDto){
-        return promotionService.applyPromotionToCategory(categoryId, promotionDto);
+    public Promotion createPromotion(
+            @RequestBody PromotionDto promotionDto) {
+        return promotionService.applyPromotionToCategory(promotionDto);
     }
-
 }

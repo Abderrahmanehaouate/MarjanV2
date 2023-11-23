@@ -25,7 +25,7 @@ public class ProductService {
     public List<ProductDto> getAllProducts() {
         List<Product> products = productRepository.findAll();
         return products.stream()
-                .map(p -> modelMapper.map(p, ProductDto.class))
+                .map(ProductDto::fromEntity)
                 .collect(Collectors.toList());
     }
 

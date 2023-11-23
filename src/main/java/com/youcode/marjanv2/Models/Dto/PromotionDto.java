@@ -4,6 +4,7 @@ import com.youcode.marjanv2.Models.Entity.Product;
 import com.youcode.marjanv2.Models.Entity.Promotion;
 import lombok.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,6 +18,10 @@ public class PromotionDto {
     private String name;
     private String description;
     private Double discountPercentage;
+    private Double loyaltyPoints;
+    private Date startTime;
+    private Date endTime;
+    private String status;
     private Long categoryId;
 
     private List<Long> productIds;
@@ -25,6 +30,10 @@ public class PromotionDto {
         return PromotionDto.builder()
                 .id(promotion.getId())
                 .name(promotion.getName())
+                .loyaltyPoints(promotion.getLoyaltyPoints())
+                .startTime(promotion.getStartTime())
+                .endTime(promotion.getEndTime())
+                .status(promotion.getStatus())
                 .description(promotion.getDescription())
                 .discountPercentage(promotion.getDiscountPercentage())
                 .categoryId(

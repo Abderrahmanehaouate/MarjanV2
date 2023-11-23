@@ -1,5 +1,6 @@
 package com.youcode.marjanv2.Services;
 
+import com.youcode.marjanv2.Exceptions.CustomException;
 import com.youcode.marjanv2.Models.Dto.PromotionDto;
 import com.youcode.marjanv2.Models.Entity.Category;
 import com.youcode.marjanv2.Models.Entity.Product;
@@ -11,6 +12,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -29,48 +31,56 @@ public class PromotionService {
         this.modelMapper = modelMapper;
     }
 
+
     public List<PromotionDto> getPromotions() {
         List<Promotion> promotions = promotionRepository.findAll();
-        return promotions.stream().
-                map(promotion -> modelMapper.map(promotion, PromotionDto.class))
+        return promotions.stream()
+                .map(PromotionDto::fromEntity)
                 .collect(Collectors.toList());
     }
 
     public PromotionDto getPromotionById(Long id) {
         Optional<Promotion> promotion = promotionRepository.findById(id);
-        return promotion.map(promo -> modelMapper.map(promo,PromotionDto.class)).orElse(null);
+        return promotion.map(PromotionDto::fromEntity)
+                .orElse(null);
     }
 
-    public Promotion createPromotion(PromotionDto promotionDto) {
+    public Promotion applyPromotionToCategory(PromotionDto promotionDto) {
         Promotion promotion = modelMapper.map(promotionDto, Promotion.class);
-        return promotionRepository.save(promotion);
-    }
 
-    public Promotion applyPromotionToCategory(Long categoryId, PromotionDto promotionDto) {
-        Promotion promotion = modelMapper.map(promotionDto, Promotion.class);
-        if (promotion.getDiscountPercentage() > 50) {
-            throw new IllegalArgumentException("Promotion percentage exceeds 50%");
+        LocalTime currentTime = LocalTime.now();
+        LocalTime startTime = LocalTime.of(8, 0);
+        LocalTime endTime = LocalTime.of(23, 0);
+
+        if (currentTime.isBefore(startTime) || currentTime.isAfter(endTime)) {
+            throw new CustomException("Promotions can only be applied between 8:00 AM and 12:00 PM.");
         }
+//        if (promotion.getDiscountPercentage() > 50) {
+//            throw new CustomException("Promotion percentage exceeds 50%");
+//        }
 
-        Category category = categoryRepository.findById(categoryId)
-                .orElseThrow(() -> new IllegalArgumentException("Category not found"));
+        Category category = categoryRepository.findById(promotionDto.getCategoryId())
+                .orElseThrow(() -> new CustomException("Category not found"));
 
         List<Product> products = category.getProducts();
         for (Product product : products) {
             if (product.getQuantity() < 20 && promotion.getDiscountPercentage() > 70) {
-                throw new IllegalArgumentException("Promotion percentage exceeds 70% for products with quantity < 20");
+                throw new CustomException("Promotion percentage exceeds 70% for products with quantity < 20");
             }
         }
 
         double loyaltyPoints = promotion.getDiscountPercentage() / 5 * 3;
 
+        Promotion savedPromotion = promotionRepository.save(promotion);
+
         for (Product product : products) {
-            product.setPromotion(promotion);
+            product.setPromotion(savedPromotion);
             productRepository.save(product);
         }
 
-        promotion.setCategory(category);
-        promotion.setLoyaltyPoints(loyaltyPoints);
-        return promotionRepository.save(promotion);
+        savedPromotion.setCategory(category);
+        savedPromotion.setLoyaltyPoints(loyaltyPoints);
+
+        return promotionRepository.save(savedPromotion);
     }
 }
