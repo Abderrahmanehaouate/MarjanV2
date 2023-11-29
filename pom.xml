@@ -81,6 +81,12 @@
             <artifactId>postgresql</artifactId>
             <version>42.6.0</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.liquibase/liquibase-core -->
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+        </dependency>
+
 
     </dependencies>
 
@@ -93,6 +99,15 @@
                     <image>
                         <builder>paketobuildpacks/builder-jammy-base:latest</builder>
                     </image>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-maven-plugin</artifactId>
+                <configuration>
+                    <propertyFile>src/main/resources/application.yaml</propertyFile>
+                    <changeLogFile>src/main/resources/db.changelog/changelog-master.xml</changeLogFile>
+                    <propertyFileWillOverride>true</propertyFileWillOverride>
                 </configuration>
             </plugin>
         </plugins>

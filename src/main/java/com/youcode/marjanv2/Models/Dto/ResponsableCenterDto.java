@@ -1,5 +1,6 @@
 package com.youcode.marjanv2.Models.Dto;
 
+import com.youcode.marjanv2.Models.Entity.Center;
 import com.youcode.marjanv2.Models.Entity.ResponsableCenter;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,6 +16,8 @@ public class ResponsableCenterDto {
     private String name;
     private String email;
     private String password;
+    private Center center;
+
 
     public static ResponsableCenterDto fromEntity(ResponsableCenter responsableCenter){
         return ResponsableCenterDto.builder()
