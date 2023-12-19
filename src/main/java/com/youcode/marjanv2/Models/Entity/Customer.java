@@ -1,5 +1,6 @@
 package com.youcode.marjanv2.Models.Entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,9 +20,10 @@ public class Customer extends BaseUser {
     private String address;
 
     @ManyToOne
-    @JoinColumn(name = "cashier_agent_id", nullable = false)
+    @JoinColumn(name = "cashier_agent_id")
     private CashierAgent cashierAgent;
 
     @OneToOne(mappedBy = "customer")
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private LoyaltyCard loyaltyCard;
 }

@@ -1,5 +1,6 @@
 package com.youcode.marjanv2.Models.Entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,5 +18,6 @@ public class Center {
     private String description;
 
     @OneToOne(mappedBy = "center")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private ResponsableCenter responsableCenter;
 }

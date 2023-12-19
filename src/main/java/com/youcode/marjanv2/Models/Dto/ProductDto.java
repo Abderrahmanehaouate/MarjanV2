@@ -1,6 +1,6 @@
 package com.youcode.marjanv2.Models.Dto;
 
-import com.youcode.marjanv2.Models.Entity.Category;
+import com.youcode.marjanv2.Models.Dto.CategoryDto.CategoryDto;
 import com.youcode.marjanv2.Models.Entity.Promotion;
 import lombok.*;
 
@@ -15,7 +15,8 @@ public class ProductDto {
     private String description;
     private Double price;
     private String imageUrl;
-    private String productStatus;
-    private Category category;
+    private Long quantity;
+    private boolean status;
+    private CategoryDto category;
     private Promotion promotion;
 }

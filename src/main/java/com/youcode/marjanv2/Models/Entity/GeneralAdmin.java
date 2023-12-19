@@ -12,4 +12,5 @@ public class GeneralAdmin extends BaseUser{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
 }

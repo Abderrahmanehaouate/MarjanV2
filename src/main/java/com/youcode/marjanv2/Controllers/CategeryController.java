@@ -1,7 +1,6 @@
 package com.youcode.marjanv2.Controllers;
 
-import com.youcode.marjanv2.Models.Dto.CategoryDto;
-import com.youcode.marjanv2.Models.Entity.Admin;
+import com.youcode.marjanv2.Models.Dto.CategoryDto.CategoryDto;
 import com.youcode.marjanv2.Models.Entity.Category;
 import com.youcode.marjanv2.Services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +14,7 @@ import java.util.Optional;
 
 @Controller
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/api/v1/categories")
 public class CategeryController {
     private final CategoryService categoryService;
@@ -30,8 +30,8 @@ public class CategeryController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<String> createAdmin(@RequestBody CategoryDto categoryDto) {
-        categoryService.saveAdmin(categoryDto);
+    public ResponseEntity<String> create(@RequestBody Category category) {
+        categoryService.saveAdmin(category);
         return new ResponseEntity<>("Category created successfully", HttpStatus.OK);
     }
 

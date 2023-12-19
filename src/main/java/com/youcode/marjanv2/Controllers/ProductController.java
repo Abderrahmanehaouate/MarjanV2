@@ -13,6 +13,7 @@ import java.util.List;
 
 @Controller
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/api/v1/products")
 public class ProductController {
     private final ProductService productService;
@@ -32,9 +33,8 @@ public class ProductController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<String> createProduct(@RequestBody ProductDto productDto) {
-        productService.createProduct(productDto);
-        return new ResponseEntity<>("Product created successfully", HttpStatus.OK);
+    public ProductDto createProduct(@RequestBody ProductDto productDto) {
+        return productService.createProduct(productDto);
     }
 
     @DeleteMapping("/{id}")
@@ -42,9 +42,8 @@ public class ProductController {
         productService.deleteProductById(id);
     }
 
-    @PutMapping("/update")
-    public ResponseEntity<String> updateProduct(@RequestBody Product product) {
-        productService.updateProduct(product);
-        return new ResponseEntity<>("Product updated successfully", HttpStatus.OK);
+    @PatchMapping("/update/{productId}")
+    public Product updateProduct(@PathVariable Long productId,@RequestBody Product product) {
+        return productService.updateProduct(productId, product);
     }
 }

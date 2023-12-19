@@ -1,12 +1,14 @@
 package com.youcode.marjanv2.Models.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.youcode.marjanv2.Enum.Status;
 import jakarta.persistence.*;
 import lombok.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 @Builder
 @Table(name = "tbl_products")
 @Entity
@@ -17,8 +19,9 @@ public class Product {
     private String name;
     private String description;
     private Double price;
+    private Long quantity;
     private String imageUrl;
-    private String productStatus;
+    private boolean status;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
@@ -26,8 +29,15 @@ public class Product {
     private Category category;
 
     @ManyToOne
-    @JoinColumn(name = "promotion_id")
     @JsonIgnore
+    @JoinColumn(name = "promotion_id")
     private Promotion promotion;
+
+    public boolean getStatus() {
+        return this.status;
+    }
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
 
 }

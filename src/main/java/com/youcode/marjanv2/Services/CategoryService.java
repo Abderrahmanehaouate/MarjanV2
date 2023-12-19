@@ -1,6 +1,6 @@
 package com.youcode.marjanv2.Services;
 
-import com.youcode.marjanv2.Models.Dto.CategoryDto;
+import com.youcode.marjanv2.Models.Dto.CategoryDto.CategoryDto;
 import com.youcode.marjanv2.Models.Entity.Category;
 import com.youcode.marjanv2.Repositories.CategoryRepository;
 import org.modelmapper.ModelMapper;
@@ -21,10 +21,12 @@ public class CategoryService {
         this.categoryRepository = categoryRepository;
         this.modelMapper = modelMapper;
     }
+
     public List<CategoryDto> getAllCategories() {
         List<Category> categories = categoryRepository.findAll();
+
         return categories.stream()
-                .map(CategoryDto::fromEntity)
+                .map(category -> modelMapper.map(category, CategoryDto.class))
                 .collect(Collectors.toList());
     }
 
@@ -32,8 +34,7 @@ public class CategoryService {
         return categoryRepository.findById(id);
     }
 
-    public void saveAdmin(CategoryDto categoryDto) {
-        Category category = modelMapper.map(categoryDto, Category.class);
+    public void saveAdmin(Category category) {
         categoryRepository.save(category);
     }
 }

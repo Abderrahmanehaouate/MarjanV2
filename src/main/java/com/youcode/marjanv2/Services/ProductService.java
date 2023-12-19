@@ -3,6 +3,7 @@ package com.youcode.marjanv2.Services;
 import com.youcode.marjanv2.Models.Dto.ProductDto;
 import com.youcode.marjanv2.Models.Entity.Product;
 import com.youcode.marjanv2.Repositories.ProductRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,22 +25,32 @@ public class ProductService {
 
     public List<ProductDto> getAllProducts() {
         List<Product> products = productRepository.findAll();
+
         return products.stream()
                 .map(p -> modelMapper.map(p, ProductDto.class))
                 .collect(Collectors.toList());
     }
 
-    public void createProduct(ProductDto productDto) {
+    public ProductDto createProduct(ProductDto productDto) {
         Product product = modelMapper.map(productDto, Product.class);
         productRepository.save(product);
+        return modelMapper.map(product, ProductDto.class);
     }
+
 
     public void deleteProductById(Long id) {
         productRepository.deleteById(id);
     }
 
-    public void updateProduct(Product product) {
-        productRepository.save(product);
+    public Product updateProduct(Long productId, Product product) {
+        Product existingProduct = productRepository.findById(productId)
+                .orElseThrow(() -> new EntityNotFoundException("Product not found"));
+        if (product.getName() != null) {
+            existingProduct.setName(product.getName());
+        }
+        existingProduct.setStatus(product.getStatus());
+        return productRepository.save(existingProduct);
+
     }
 
     public ProductDto getProductById(Long id) {
