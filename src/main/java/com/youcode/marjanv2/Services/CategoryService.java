@@ -34,7 +34,8 @@ public class CategoryService {
         return categoryRepository.findById(id);
     }
 
-    public void saveAdmin(Category category) {
+    public void createCategory(CategoryDto categoryDto) {
+        Category category = modelMapper.map(categoryDto, Category.class);
         categoryRepository.save(category);
     }
 }

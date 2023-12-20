@@ -1,12 +1,9 @@
 package com.youcode.marjanv2.Controllers;
 
-import com.youcode.marjanv2.Models.Dto.PromotionDto;
-import com.youcode.marjanv2.Models.Entity.Promotion;
+import com.youcode.marjanv2.Models.Dto.PromotionDto.PromotionDto;
 import com.youcode.marjanv2.Services.PromotionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

@@ -30,8 +30,8 @@ public class CategeryController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<String> create(@RequestBody Category category) {
-        categoryService.saveAdmin(category);
+    public ResponseEntity<String> create(@RequestBody CategoryDto category) {
+        categoryService.createCategory(category);
         return new ResponseEntity<>("Category created successfully", HttpStatus.OK);
     }
 

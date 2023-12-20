@@ -1,10 +1,7 @@
 package com.youcode.marjanv2.Services;
 
-import com.youcode.marjanv2.Models.Dto.PromotionDto;
-import com.youcode.marjanv2.Models.Entity.Product;
 import com.youcode.marjanv2.Models.Entity.ResponsableCenter;
 import com.youcode.marjanv2.Repositories.ResponsableCenterRepository;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
